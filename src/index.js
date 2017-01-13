@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import {Router, Route, browserHistory} from 'react-router'
+import MapTracker from './components/Map/resources'
+import {Router, Route, browserHistory, IndexRoute, IndexRedirect} from 'react-router'
 
 
 import App from './components/app';
@@ -15,8 +16,9 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Router history = {browserHistory}>
       <Route path="/" component={App}>
-        <Route path = "/resources" component ={Resources}/>
+        <IndexRedirect to="/map"/>
+        <Route path = "/map" component ={MapTracker}/>
         </Route>
       </Router>
   </Provider>
-  , document.querySelector('.container'));
+  , document.querySelector('.StartApp'));
